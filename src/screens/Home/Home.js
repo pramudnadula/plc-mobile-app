@@ -1,22 +1,32 @@
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import MainButton from '../../components/Buttons/MainButton';
 
 const Home = () => {
-    <View style={styles.container}>
-        <Text style={styles.text}>Home</Text>
-    </View>
+    return (
+        <View style={styles.container}>
+            <Image source={require('../../assets/logo.png')} style={styles.log} />
+            <Image source={require('../../assets/car.png')} style={styles.mainImage} />
+            <MainButton title="Start Inspection" onPress={() => { }} style={{ width: '45%', fontWeight: 'bold' }} />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    text: {
-        marginTop: 20,
-        color: "#000",
-        fontSize: 35,
+    log: {
+        width: '100%', // '100%
+        height: 200,
+        resizeMode: 'contain',
+    },
+    mainImage: {
+        width: '100%', // '100%
+        height: 300,
+        resizeMode: 'contain',
     },
 });
 

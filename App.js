@@ -7,8 +7,10 @@ import { Animated, Easing, Text } from "react-native";
 import Toast from "react-native-toast-message";
 import NetInfo from '@react-native-community/netinfo';
 import SplashScreen from "./src/screens/SplashScreen";
-import Home from "./src/screens/Home/Home";
 import NoInternetModal from "./src/components/Modals/NoInternetModal";
+import CustomHeader from "./src/components/Modals/CustomHeader";
+import Home from "./src/screens/Home/Home";
+import Profile from "./src/screens/Profile/Profile";
 
 
 const Stack = createStackNavigator();
@@ -66,6 +68,12 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        header: (props) => (
+          <CustomHeader
+            {...props}
+            headline={route.params?.headline || route.name} // Pass the headline as a prop
+          />
+        ),
         tabBarIcon: ({ color, size }) => {
           let iconName;
 
@@ -74,16 +82,20 @@ const TabNavigator = () => {
             return (
               <MaterialIcons name={iconName} size={size} color={color} />
             );
-          }
-          else {
+          } else if (route.name === "profile") {
+            iconName = "person";
+            return (
+              <MaterialIcons name={iconName} size={size} color={color} />
+            );
+          } else {
             iconName = "home";
             return (
               <MaterialIcons name={iconName} size={size} color={color} />
             );
           }
         },
-        headerShown: false,
-        tabBarActiveTintColor: "#00C795",
+        // headerShown: false,
+        tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           display: "flex",
@@ -95,6 +107,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="NestedHome" component={Home} />
+      <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );
 };
