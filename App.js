@@ -57,6 +57,7 @@ const App = () => {
         <Toast />
         <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={TabNavigator} />
+          <Stack.Screen name="profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
       <NoInternetModal visible={!isconnected} onClose={() => setisconnected(true)} />

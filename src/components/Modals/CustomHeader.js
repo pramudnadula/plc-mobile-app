@@ -1,13 +1,22 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, BackHandler } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 
 const CustomHeader = ({ headline, navigation }) => {
 
+    // handle back button press navigation and when back comes first screen exit app
+    const handleBackPress = () => {
+        if (navigation.canGoBack()) {
+            navigation.goBack();
+        } else {
+            BackHandler.exitApp();
+        }
+    };
+
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity onPress={() => handleBackPress()}>
                 <MaterialIcons name="keyboard-arrow-left" size={40} color="white" />
             </TouchableOpacity>
             <Text style={{ fontSize: 22, marginLeft: 16, fontWeight: 'bold', color: 'white' }}>

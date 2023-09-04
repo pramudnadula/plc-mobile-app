@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     touchable: {
         alignItems: "center",
         justifyContent: "center",
-        paddingVertical: 12,
+        paddingVertical: 5,
         backgroundColor: "red",
         borderRadius: 5,
         width: "100%",
